@@ -29,7 +29,7 @@ js_file.close()
 js_file = open("public/websalt.js", fmWrite)
 
 #A tribute to the Father and a link to the source code
-js_list[2] = "/* For Father Pohl */\n/* https://gitlab.com/websalt/websalt */\n"
+js_list[2] = "/* For Father Pohl */\n/* https://github.com/websalt/websalt.github.io */\n"
 
 #Write to the file and close it
 for entry in js_list:

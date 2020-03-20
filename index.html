@@ -14,7 +14,7 @@
     	// get a random index (line number)
     	var randomLineIndex = Math.floor( Math.random() * fileContentLines.length );
     	// extract the value
-    	var randomLine = fileContentLines[ randomLineIndex ];
+    	var randomLine = fileContentLines[ randomLineIndex - 1 ];
     	// add the random line in a div
     	document.getElementById( 'main' ).innerHTML = randomLine;
 	};

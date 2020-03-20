@@ -1,18 +1,33 @@
 <!DOCTYPE html>
 <!-- For Father Pohl -->
-<!-- https://github.com/websalt/websalt.github.io -->
+<!-- https://github.com/websalt/websalt -->
 <html>
 <head>
   <title>Websalt</title>
-  <script type="text/javascript" src="websalt.js">
-</script>
+	<script>
+	var request = new XMLHttpRequest();
+	request.onload = function() {
+    	// get the file contents
+    	var fileContent = this.responseText;
+    	// split into lines
+    	var fileContentLines = fileContent.split( '\n' );
+    	// get a random index (line number)
+    	var randomLineIndex = Math.floor( Math.random() * fileContentLines.length );
+    	// extract the value
+    	var randomLine = fileContentLines[ randomLineIndex ];
+    	// add the random line in a div
+    	document.getElementById( 'main' ).innerHTML = randomLine;
+	};
+	request.open( 'GET', 'https://websalt.github.io/salt.txt', true );
+	request.send();
+	</script>
 </head>
-<body onload="onLoad();">
+<body>
   <noscript>
     This site requires Javascript,
-    but the list of salts can be found 
+    but the list of salts can still be found on
     <a href=https://websalt.github.io/salt.txt
-    style= "color: #000000">here</a>
+    style= "color: #000000">Gitlab</a>
   </noscript>
   <div id="main"></div>
   <style type="text/css" media="screen">

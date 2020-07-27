@@ -8,24 +8,44 @@
   <title>Websalt</title>
   <link rel="icon" href="favicon.svg">
   <link rel="stylesheet" type="text/css" href="style.css">
-	<script>
-	var request = new XMLHttpRequest();
-	request.onload = function() {
-    	// get the file contents
-    	var fileContent = this.responseText;
-    	// split into lines
-    	var fileContentLines = fileContent.split( '\n' ).slice(0, -1);
+  <script>
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+    // get the file contents
+    var fileContent = this.responseText;
+    // split into lines
+    var fileContentLines = fileContent.split( '\n' ).slice(0, -1);
 
-        var numberOfSalts = fileContentLines.length;
+    // The number of salts
+    var numberOfSalts = fileContentLines.length;
 
-        var indexNumber = window.location.hash.substr(1);
+    // The salt wanted
+    var indexNumber = window.location.hash.substr(1);
+
+   if (!indexNumber) {
+        var content = "Error: The url should end with a hash followed by the number of the salt to show";
+    // The index is not a number
+    } else if (isNaN(indexNumber)) {
+        var content = "Error: The thing after the hash is not a number";
+
+    // The index is not withing the accepted range
+    } else if (indexNumber > numberOfSalts || indexNumber < 1) {
+        var content = "Error: The thing after the hash is not between 1 and "
+            + numberOfSalts; 
+
+    // The index is good
+    } else {
         var content = fileContentLines[indexNumber - 1];
+    }
 
-    	document.getElementById( 'main' ).innerHTML = content;
-	};
-	request.open( 'GET', 'salt.txt', true );
-	request.send();
-	</script>
+    // Present the stuff
+    document.getElementById( 'main' ).innerHTML = content;
+    };
+
+    // Get the salts
+    request.open( 'GET', 'salt.txt', true );
+    request.send();
+  </script>
 </head>
 <body>
   <noscript>

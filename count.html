@@ -8,23 +8,28 @@
   <link rel="icon" href="favicon.svg">
   <link rel="stylesheet" type="text/css" href="style.css">
   <title>Websalt</title>
-	<script>
-	var request = new XMLHttpRequest();
-	request.onload = function() {
-    	// get the file contents
-    	var fileContent = this.responseText;
-    	// split into lines
-    	var fileContentLines = fileContent.split( '\n' );
+  <script>
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+    // get the file contents
+    var fileContent = this.responseText;
+    // split into lines
+    var fileContentLines = fileContent.split( '\n' );
 
-        var numberOfSalts = fileContentLines.slice(0, -1).length;
+    // Get the number of salts
+    var numberOfSalts = fileContentLines.length - 1;
 
-        var content = "<pre>Number of Salts:\n" + numberOfSalts + "</pre>";
+    // The stuff to present
+    var content = "<pre>Number of Salts:\n" + numberOfSalts + "</pre>";
 
-    	document.getElementById( 'main' ).innerHTML = content;
-	};
-	request.open( 'GET', 'salt.txt', true );
-	request.send();
-	</script>
+    // Present the stuff
+    document.getElementById( 'main' ).innerHTML = content;
+    };
+
+    // Get the salts
+    request.open( 'GET', 'salt.txt', true );
+    request.send();
+  </script>
 </head>
 <body>
   <noscript>

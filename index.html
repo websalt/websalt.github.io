@@ -7,23 +7,23 @@
   <meta charset="UTF-8">
   <title>Websalt</title>
   <link rel="icon" href="favicon.svg">
-	<script>
-	var request = new XMLHttpRequest();
-	request.onload = function() {
-    	// get the file contents
-    	var fileContent = this.responseText;
-    	// split into lines
-    	var fileContentLines = fileContent.split( '\n' ).slice(0, -1);
-    	// get a random index (line number)
-    	var randomLineIndex = Math.floor( Math.random() * fileContentLines.length );
-    	// extract the value
-    	var randomLine = fileContentLines[ randomLineIndex ];
-    	// add the random line in a div
-    	document.getElementById( 'main' ).innerHTML = randomLine;
-	};
-	request.open( 'GET', 'salt.txt', true );
-	request.send();
-	</script>
+  <script>
+    var request = new XMLHttpRequest();
+    request.onload = function() {
+    // get the file contents
+    var fileContent = this.responseText;
+    // split into lines
+    var fileContentLines = fileContent.split( '\n' ).slice(0, -1);
+    // get a random index (line number)
+    var randomLineIndex = Math.floor( Math.random() * fileContentLines.length );
+    // extract the value
+    var randomLine = fileContentLines[ randomLineIndex ];
+    // add the random line in a div
+    document.getElementById( 'main' ).innerHTML = randomLine;
+    };
+    request.open( 'GET', 'salt.txt', true );
+    request.send();
+  </script>
 </head>
 <body>
   <noscript>

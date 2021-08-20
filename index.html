@@ -11,16 +11,20 @@
   <script>
     var request = new XMLHttpRequest();
     request.onload = function() {
-    // get the file contents
-    var fileContent = this.responseText;
-    // split into lines
-    var fileContentLines = fileContent.split( '\n' ).slice(0, -1);
-    // get a random index (line number)
-    var randomLineIndex = Math.floor( Math.random() * fileContentLines.length );
-    // extract the value
-    var randomLine = fileContentLines[ randomLineIndex ];
-    // add the random line in a div
-    document.getElementById( 'main' ).innerHTML = randomLine;
+      const main = document.getElementById('main');
+      const lines = this.responseText.split('\n').slice(0,-1);
+      const hash = location.hash.slice(1);
+      if (hash && !isNaN(hash)) {
+        const saltNum = Number(hash) - 1;
+        if (saltNum > lines.length || saltNum < 0) {
+          main.innerText = 'Error: Invalid salt index';
+          return;
+        }
+        main.innerHTML = lines[saltNum];
+        return;
+      }
+      const randomLine = lines[Math.floor(Math.random() * lines.length)];
+      main.innerHTML = randomLine;
     };
     // Get the salts
     request.open( 'GET', 'salt.txt', true );
